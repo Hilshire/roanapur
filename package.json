@@ -15,6 +15,7 @@
   "dependencies": {
     "koa": "^2.4.1",
     "koa-better-body": "^3.0.4",
+    "koa-better-router": "^2.1.1",
     "sequelize": "^4.31.2"
   }
 }

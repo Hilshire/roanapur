@@ -4,9 +4,9 @@
  */
 const koa = require('koa');
 const bodyParse = require('koa-better-body');
+const router = require('koa-better-router')().loadMethods();
 
-
-const app = new koa()
+const app = new koa();
 
 app.use(async ctx => {
 	ctx.body = 'hello world';
