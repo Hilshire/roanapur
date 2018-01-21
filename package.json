@@ -1,0 +1,18 @@
+{
+  "name": "roanapur",
+  "version": "1.0.0",
+  "description": "hilshire's personal blog backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "blog",
+    "back-end"
+  ],
+  "author": "hilshire",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "koa": "^2.4.1"
+  }
+}
