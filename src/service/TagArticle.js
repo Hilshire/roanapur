@@ -12,22 +12,22 @@ module.exports = class TagArticleService extends ArticleService {
     async create(data, tagNames) {
         const newArticle = await super.create(data);
         if (newArticle && tagNames)
-            await newArticle.setTags(tagService.safeQueryList(tagNames));
+            await newArticle.setTags(await tagService.safeQueryList(tagNames)).catch(e => console.log('>>>>>>>>>>>>>>>>>>>>', e));
         return newArticle;
     }
     async addTag(id, tagName) {
-        this.query(id).addTag(tagService.safeQuery(tagName));
+        return await (await this.query(id)).addTag(await tagService.safeQuery(tagName));
     }
     async addTags(id, tagNames) {
-        this.query(id).addTag(tagService.safeQueryList(tagNames));
+        return await (await this.query(id)).addTag(await tagService.safeQueryList(tagNames));
     }
-    queryTags(id) {
-        return this.query(id).getTags();
+    async queryTags(id) {
+        return await (await this.query(id)).getTags();
     }
-    deleteTag(articleId, tagId) {
-        return this.query(articleId).remove(tagService.queryById(tagId));
+    async deleteTag(articleId, tagId) {
+        return await (await this.query(articleId)).remove(await tagService.queryById(tagId));
     }
-    deleteAllTags(id) {
-        return this.query(id).setTags([]);
+    async deleteAllTags(id) {
+        return await (await this.query(id)).setTags([]);
     }
 }

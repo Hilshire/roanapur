@@ -2,12 +2,12 @@
  * @Author: hilshire
  * @Date: 2018-01-21 13:55:52
  */
-const Tag = require('../models').Tag;
+const Tag = require('../models').tag;
 
 class TagService {
-    query(idOrName) {
-        if (typeof idOrName === 'number') return this.queryById(idOrName)
-        else if (typeof idOrName === 'string') return this.queryByName(idOrName);
+    async query(idOrName) {
+        if (typeof idOrName === 'number') return await this.queryById(idOrName)
+        else if (typeof idOrName === 'string') return await this.queryByName(idOrName);
     }
 
     async queryById(id) {
@@ -29,16 +29,16 @@ class TagService {
             else return await this.create(name);
     }
 
-    safeQueryList(names) {
-        return Promise.all(names.map(async name => await this.safeQuery(name)));
+    async safeQueryList(names) {
+        return await Promise.all(names.filter(i => i).map(name => this.safeQuery(name)));
     }
 
     async create(name) {
         return await Tag.create({ name });
     }
 
-    createByList(names) {
-        return Promise.all(names.map(name => this.create(name)));
+    async createByList(names) {
+        return await Promise.all(names.map(name => this.create(name)));
     }
 
     async delete(id) {
@@ -47,7 +47,7 @@ class TagService {
 
     async querySources(id) {
         let tag = await this.queryById(id);
-        return Promise.all([
+        return await Promise.all([
             tag.getBlogs(),
             tag.getEssays(),
             tag.getTips(),
