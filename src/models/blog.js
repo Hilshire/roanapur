@@ -9,15 +9,19 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
         },
         summary: DataTypes.BLOB,
-    }, {
-        classMethods: {
-            associate: models => {
-                let Tag = models.Tag;
-                Blog.belongsToMany(Tag, { through: models.BlogTag });
-                Tag.belongsToMany(Blog, { through: models.BlogTag});
-            },
-        }
     });
+
+    Blog.associate = models => {
+        let Tag = models.Tag;
+        Blog.belongsToMany(Tag, {
+            through: models.BlogTag,
+            foreignKey: 'blog_id'
+        });
+        Tag.belongsToMany(Blog, {
+            through: models.BlogTag,
+            foreignKey: 'tag_id'
+        });
+    };
 
     return Blog;
 };
