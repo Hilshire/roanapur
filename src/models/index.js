@@ -1,36 +1,33 @@
-'use strict';
+"use strict"
 
-var fs        = require('fs');
-var path      = require('path');
-var Sequelize = require('sequelize');
-var basename  = path.basename(__filename);
-var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config.js')[env];
-var db        = {};
+let fs = require("fs"),
+    path = require("path")
+let Sequelize = require("sequelize")
+let env = process.env.NODE_ENV || "development"
+const config = require("../config.json")["db"][env]
 
-if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+// see this: https://github.com/sequelize/sequelize/issues/8417#issuecomment-335124373
+config.operatorsAliases = Sequelize.Op
+config.storage = path.join(__dirname, '../../', config.storage)
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    var model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
+let sequelzie = new Sequelize(config),
+    db = {}
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+fs.readdirSync(__dirname)
+    .filter(file => {
+      return (file.indexOf(".") !== 0) && (file !== "index.js")
+    })
+    .forEach(file => {
+      let model = sequelzie.import(path.join(__dirname, file))
+      db[model.name] = model
+    })
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+Object.keys(db).forEach(function(modelName) {
+    if ("associate" in db[modelName]) {
+        db[modelName].associate(db);
+    }
+})
 
-module.exports = db;
+db.sequelize = sequelzie
+db.Sequelize = Sequelize
+module.exports = db

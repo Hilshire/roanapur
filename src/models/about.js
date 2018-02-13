@@ -1,7 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    let About = sequelize.define('About', {
-        content: DataTypes.BLOB
-    })
-
-    return About
-}
+    return sequelize.define('About', {
+        content: DataTypes.BLOB,
+    });
+};

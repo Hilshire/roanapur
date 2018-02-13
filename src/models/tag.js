@@ -1,12 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
     let Tag = sequelize.define("Tag", {
-        text: {
+        name: {
             type: DataTypes.STRING(15),
-            notNull: true,
-            unique: true
+            allowNull: false,
+            unique: true,
+            validate: { notEmpty: true }
         }
     }, {
-        classMethods: {              
+        classMethods: {
             associate: models => {
                 ['Blog', 'Essay', 'Note'].forEach(modelName => {
                     Tag.belongsToMany(models[modelName], genForeignKey(modelName))

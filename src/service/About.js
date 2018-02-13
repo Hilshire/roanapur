@@ -4,15 +4,17 @@
  */
 const About = require("../models").About;
 
-module.exports = class About {
+class AboutService {
     async create (data) {
         return await About.create(data);
     }
 
     async query () {
-        return await About.findAll({
+        return (await About.findAll({
             limit: 1,
             order: [['createdAt', 'DESC']]
-        })[0];
+        }))[0];
     }
 }
+
+module.exports = new AboutService();

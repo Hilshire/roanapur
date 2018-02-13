@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define("Note_tag", {
+    return sequelize.define("NoteTag", {
         note_id: {
             type: DataTypes.INTEGER,
             unique: 'note_tag'

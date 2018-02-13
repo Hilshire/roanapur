@@ -2,31 +2,32 @@
  * @Author: hilshire
  * @Date: 2018-01-21 13:01:13
  */
-const ArticleService = require('./Article');
-const tagService = require('./Tag')();
+const ArticleService = require('./BaseArticle');
+const tagService = require('./tag');
 
-module.exports = class TagArticleService {
+module.exports = class TagArticleService extends ArticleService {
     constructor (model) {
         super(model);
     }
-    async create(data, tagNameList) {
-        const newArticle = super.create(data);
-        if (newArticle && tagNameList)
-            await newArticle.setTags(tagService.safeQueryList);
+    async create(data, tagNames) {
+        const newArticle = await super.create(data);
+        if (newArticle && tagNames)
+            await newArticle.setTags(tagService.safeQueryList(tagNames));
+        return newArticle;
     }
     async addTag(id, tagName) {
         this.query(id).addTag(tagService.safeQuery(tagName));
     }
     async addTags(id, tagNames) {
-        this.query(id).addTags(tagService.safeQueryList(tagNames));
+        this.query(id).addTag(tagService.safeQueryList(tagNames));
     }
     queryTags(id) {
-        return this.queryTags(id).getTags();
+        return this.query(id).getTags();
     }
     deleteTag(articleId, tagId) {
-        return this.queryTags(articleId).remove(tagService.queryById(tagId));
+        return this.query(articleId).remove(tagService.queryById(tagId));
     }
     deleteAllTags(id) {
-        return this.queryTags(id).setTags([]);
+        return this.query(id).setTags([]);
     }
 }

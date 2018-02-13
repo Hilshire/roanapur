@@ -4,7 +4,9 @@
   "description": "hilshire's personal blog backend",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "start": "export NODE_ENV=development && node src/index.js",
+    "build": "",
+    "test": "export NODE_ENV=test && mocha test/**/*.js"
   },
   "keywords": [
     "blog",
@@ -16,6 +18,11 @@
     "koa": "^2.4.1",
     "koa-better-body": "^3.0.4",
     "koa-better-router": "^2.1.1",
-    "sequelize": "^4.31.2"
+    "sequelize": "^4.31.2",
+    "sqlite3": "^3.1.13"
+  },
+  "devDependencies": {
+    "mocha": "^5.0.0",
+    "should": "^13.2.1"
   }
 }

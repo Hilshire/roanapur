@@ -20,7 +20,7 @@
     
     Tags
         String id
-        String title
+        String name
 
 ```
 ### Blog

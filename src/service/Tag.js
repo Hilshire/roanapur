@@ -4,7 +4,12 @@
  */
 const Tag = require('../models').Tag;
 
-module.exports = class TagService {
+class TagService {
+    query(idOrName) {
+        if (typeof idOrName === 'number') return this.queryById(idOrName)
+        else if (typeof idOrName === 'string') return this.queryByName(idOrName);
+    }
+
     async queryById(id) {
         return await Tag.find({ where: { id } });
     }
@@ -13,27 +18,30 @@ module.exports = class TagService {
         return await Tag.find({ where: { name }});
     }
 
-    // if exist, return exist tag; if not, create a new one and return it
-    async safeQuery(name) {
-        let existTag = this.queryByName(name);
-        if (existTag) return existTag
-            else return this.create(name);
+    async queryAll() {
+        return await Tag.findAll({ order: [['createdAt', 'DESC']] });
     }
 
-    safeQueryList(nameList) {
-        return nameList.map(name => this.safeQuery(name));
+    // if exist, return exist tag; if not, create a new one and return it
+    async safeQuery(name) {
+        let existTag = await this.queryByName(name);
+        if (existTag) return existTag
+            else return await this.create(name);
+    }
+
+    safeQueryList(names) {
+        return Promise.all(names.map(async name => await this.safeQuery(name)));
     }
 
     async create(name) {
-        if (!Tag.queryByName(name))
-            return await Tag.create({ name });
+        return await Tag.create({ name });
     }
 
-    async createByList(nameList) {
-        return nameList.map(name => this.create(name));
+    createByList(names) {
+        return Promise.all(names.map(name => this.create(name)));
     }
 
-    async del(id) {
+    async delete(id) {
         return await Tag.destroy({ where: { id } });
     }
 
@@ -46,3 +54,5 @@ module.exports = class TagService {
         ])
     }
 }
+
+module.exports = new TagService();

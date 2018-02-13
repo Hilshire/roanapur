@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define("Essay_tag", {
+    return sequelize.define("EssayTag", {
         essay_id: {
             type: DataTypes.INTEGER,
             unique: 'essay_tag'
@@ -9,4 +9,4 @@ module.exports = function (sequelize, DataTypes) {
             unique: 'essay_tag'
         }
     })
-}
+};

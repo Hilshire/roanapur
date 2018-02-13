@@ -2,7 +2,7 @@
  * @Author: hilshire
  * @Date: 2018-01-21 12:51:12
  */
-module.exports = class ArticleService {
+module.exports = class BaseArticleService {
     constructor (model) {
         this.model = model;
     }

@@ -4,7 +4,7 @@
  */
 const Banner = require("../models").Banner;
 
-module.exports = class Banner {
+class BannerService {
     async create(data) {
         return await Banner.create(data);
     }
@@ -26,3 +26,5 @@ module.exports = class Banner {
         })
     }
 }
+
+module.exports = new BannerService();

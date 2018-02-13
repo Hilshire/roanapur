@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
-    let Banner = sequelize.define('Banner', {
+    let banner = sequelize.define('Banner', {
         content: {
             type: DataTypes.STRING,
-            notNull: true
+            allowNull: false
         }
-    })
+    });
 
-    return Banner
-}
+    return banner;
+};

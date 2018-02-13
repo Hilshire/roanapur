@@ -62,3 +62,12 @@ typings/
 
 #DS_Store
 .DS_Store
+
+# idea file
+.idea
+
+# vscode file
+.vscode
+
+# database
+db

@@ -2,18 +2,18 @@ module.exports = function (sequelize, DataTypes) {
     let Note = sequelize.define('Note', {
         title: {
             type: DataTypes.STRING(30),
-            notNull: true
+            allowNull: false
         },
         content: {
             type: DataTypes.BLOB,
-            notNull: true
+            allowNull: false
         }
     }, {
         classMethods: {              
             associate: models => {
-                let Tag = models.Tag
-                Note.belongsToMany(Tag, { through: models.Note_tag })
-                Tag.belongsToMany(Note, { through: models.Note_tag})
+                let Tag = models.Tag;
+                Note.belongsToMany(Tag, { through: models.EssayTag });
+                Tag.belongsToMany(Note, { through: models.EssayTag});
             }
         }
     })
