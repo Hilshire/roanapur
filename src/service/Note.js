@@ -2,10 +2,13 @@
  * @Author: hilshire
  * @Date: 2018-01-21 13:56:47
  */
-let Tip = require("../models").Tip;
+let Note = require("../models").Note;
 let TagArticleService = require('./TagArticle');
 
-class TipService extends TagArticleService {
+class NoteService extends TagArticleService {
+    constructor() {
+        super(Note);
+    }
     queryList(page, size) {
         return this.model.findAll({
             limit: size,
@@ -15,4 +18,4 @@ class TipService extends TagArticleService {
     }
 }
 
-module.exports = new TipService();
+module.exports = new NoteService();

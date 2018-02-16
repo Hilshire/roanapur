@@ -50,7 +50,7 @@ class TagService {
         return await Promise.all([
             tag.getBlogs(),
             tag.getEssays(),
-            tag.getTips(),
+            tag.getNotes(),
         ])
     }
 }

@@ -16,7 +16,7 @@
     
     Essay extends TagArticle
 
-    Tip extends TagArticle
+    Note extends TagArticle
     
     Tags
         String id
@@ -43,9 +43,9 @@
         String lastModify
         List tags
 ```
-### Tip
+### Note
 ```
-Object Tips
+Object Notes
     String id
     String title
     String content
