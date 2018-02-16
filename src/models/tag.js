@@ -6,22 +6,20 @@ module.exports = function(sequelize, DataTypes) {
             unique: true,
             validate: { notEmpty: true }
         }
-    }, {
-        classMethods: {
-            associate: models => {
-                ['Blog', 'Essay', 'Note'].forEach(modelName => {
-                    Tag.belongsToMany(models[modelName], genForeignKey(modelName))
-                })
-            }
-        }
-    })
+    });
 
-    return Tag
+    // Tag.associate = models => {
+    //     ['Blog', 'Essay', 'Note'].forEach(modelName => {
+    //         Tag.belongsToMany(models[modelName], genForeignKey(modelName))
+    //     })
+    // };
+
+    return Tag;
 }
 
 function genForeignKey(modelName) {
     return {
         allowNull: false,
         through: modelName + '_tag'
-    }
+    };
 }

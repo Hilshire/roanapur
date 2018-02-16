@@ -2,7 +2,7 @@
  * @Author: hilshire
  * @Date: 2018-01-21 13:55:52
  */
-const Tag = require('../models').tag;
+const Tag = require('../models').Tag;
 
 class TagService {
     async query(idOrName) {

@@ -13,11 +13,11 @@ module.exports = function (sequelize, DataTypes) {
     Note.associate = models => {
         let Tag = models.Tag;
         Note.belongsToMany(Tag, {
-            through: models.EssayTag,
+            through: models.NoteTag,
             foreignKey: 'note_id'
         });
         Tag.belongsToMany(Note, {
-            through: models.EssayTag,
+            through: models.NoteTag,
             foreignKey: 'tag_id'
         });
     };

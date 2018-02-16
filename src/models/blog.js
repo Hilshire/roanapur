@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
         let Tag = models.Tag;
         Blog.belongsToMany(Tag, {
             through: models.BlogTag,
-            foreignKey: 'blog_id'
+            foreignKey: 'tag_id'
         });
         Tag.belongsToMany(Blog, {
             through: models.BlogTag,
-            foreignKey: 'tag_id'
+            foreignKey: 'blog_id'
         });
     };
 

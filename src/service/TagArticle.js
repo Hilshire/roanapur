@@ -12,7 +12,7 @@ module.exports = class TagArticleService extends ArticleService {
     async create(data, tagNames) {
         const newArticle = await super.create(data);
         if (newArticle && tagNames)
-            await newArticle.setTags(await tagService.safeQueryList(tagNames)).catch(e => console.log('>>>>>>>>>>>>>>>>>>>>', e));
+            await newArticle.setTags(await tagService.safeQueryList(tagNames));
         return newArticle;
     }
     async addTag(id, tagName) {
