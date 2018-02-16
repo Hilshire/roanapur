@@ -18,7 +18,7 @@ module.exports = class BaseArticleService {
     }
 
     async update(id, data) {
-        return await this.model.update({
+        return await this.model.update(data, {
             where: { id },
         })
     }

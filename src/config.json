@@ -8,7 +8,7 @@
     "test": {
       "dialect": "sqlite",
       "storage": "db/db.test.sqlite",
-      "logging": false
+      "logging": true
     },
     "production": {
       "dialect": "sqlite",

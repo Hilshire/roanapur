@@ -25,7 +25,7 @@ module.exports = class TagArticleService extends ArticleService {
         return await (await this.query(id)).getTags();
     }
     async deleteTag(articleId, tagId) {
-        return await (await this.query(articleId)).remove(await tagService.queryById(tagId));
+        return await (await this.query(articleId)).removeTag(await tagService.queryById(tagId));
     }
     async deleteAllTags(id) {
         return await (await this.query(id)).setTags([]);
