@@ -7,6 +7,9 @@ const bodyParse = require('koa-better-body');
 const router = require('koa-better-router')().loadMethods();
 const session = require('koa-session');
 
+// router
+const blogRouter = require('./router/blog')
+
 const app = new koa();
 
 // set cookie key
@@ -14,10 +17,11 @@ app.keys = ['cookie', 'keyGrip'];
 
 // set session, use default config
 app.use(session(app));
+app.use(bodyParse());
 
-app.use(async ctx => {
-	// ctx.body = 'hello world';
-	ctx.body = ctx.session;
-});
+// router
+app.use(blogRouter.middleware());
+
+// app.use(async ctx => {});
 
 module.exports = app;

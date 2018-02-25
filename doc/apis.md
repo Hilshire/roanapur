@@ -75,7 +75,7 @@ Object Tag
 | PUT   | app/v1/blogs/:id        |
 | DELETE| app/v1/blogs/:id        |
 | GET   | app/v1/blogs/:id/tags   |
-| POST  | app/v1/blogs/:id/tags
+| POST  | app/v1/blogs/:id/tags   |
 | DELETE| app/v1/blogs/:id/:tagId |
 #### app/v1/blogs
 ```
