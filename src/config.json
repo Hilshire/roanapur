@@ -8,13 +8,17 @@
     "test": {
       "dialect": "sqlite",
       "storage": "db/db.test.sqlite",
-      "logging": true
+      "logging": false
     },
     "production": {
       "dialect": "sqlite",
       "storage": "db/db.product.sqlite",
       "logging": false
     }
-  }
+  },
+  "count": [{
+    "name": "admin",
+    "password": "admin"
+  }]
 }
 

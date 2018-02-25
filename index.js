@@ -1,15 +1,7 @@
 /*
  * @Author: hilshire
- * @Date: 2018-01-21 09:52:31
+ * @Date: 2018-02-25 10:56:17
  */
-const koa = require('koa');
-const bodyParse = require('koa-better-body');
-const router = require('koa-better-router')().loadMethods();
-
-const app = new koa();
-
-app.use(async ctx => {
-	ctx.body = 'hello world';
-});
+const app = require('./src/app');
 
 app.listen(3000);
