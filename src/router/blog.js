@@ -18,9 +18,9 @@ router.get('/app/v1/blogs', async (ctx, next) => {
     }
 });
 
-router.get('/app/v1/blogs/:id', (ctx, next) => {
+router.get('/app/v1/blogs/:id', async (ctx, next) => {
     try {
-        ctx.body = blogService.query(ctx.query.id);
+        ctx.body = await blogService.query(ctx.query.id);
         return next();
     } catch (e) {
         logger.error(e);
@@ -28,9 +28,9 @@ router.get('/app/v1/blogs/:id', (ctx, next) => {
     }
 })
 
-router.post('/app/v1/blogs', (ctx, next) => {
+router.post('/app/v1/blogs', async (ctx, next) => {
     try {
-        ctx.body = blogService.create(ctx.body);
+        ctx.body = await blogService.create(ctx.request.fields);
         return next();
     } catch (e) {
         logger.error(e);
