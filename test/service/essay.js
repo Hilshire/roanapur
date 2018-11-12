@@ -3,7 +3,7 @@ let models = require('../../src/models'),
 
 let essayService = require('../../src/service/essay');
 
-describe('test db', next => {
+describe('test service', next => {
     before(() => models.sequelize.sync());
 
     describe('test essay', () => {

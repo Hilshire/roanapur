@@ -3,7 +3,7 @@ let models = require('../../src/models'),
 
 let tagService = require('../../src/service/tag');
 
-describe('test db', next => {
+describe('test service', next => {
     before(() => models.sequelize.sync());
 
     describe('test tag', () => {

@@ -54,7 +54,7 @@ describe('test control', next => {
                     res.body.content.should.equal(modifyContent);
                     done()
                 });
-        })
+        });
         it('add tag', done => {
             request(app).post(`/app/v1/blogs/${id}/tags`)
                 .send({ name: tagName })
