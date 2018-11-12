@@ -50,8 +50,8 @@ describe('test service', next => {
         })
 
         it ('should success when add tags', async () => {
-            await blogService.addTag(1, 'tag3')
-            await blogService.addTags(1, ['tag4', 'tag5'])
+            let result1 = await blogService.addTag(1, 'tag3')
+            let result2 = await blogService.addTags(1, ['tag4', 'tag5'])
             let tags = await blogService.queryTags(1)
             tags.should.have.length(5)
             tags[2].name.should.equal('tag3')

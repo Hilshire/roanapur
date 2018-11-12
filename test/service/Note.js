@@ -58,10 +58,11 @@ describe('test db', next => {
         })
 
         it('should success when del tags', async () => {
-            await noteService.deleteTag(1, 1);
+            await noteService.deleteTag(1, 2);
             let tags = await noteService.queryTags(1);
             tags.length.should.equal(4);
-            tags[0].id.should.equal(2);
+            // TODO: fix it: this will change when another test crate a new tag;
+            tags[0].id.should.equal(3);
 
             await noteService.deleteAllTags(1);
             let note2 = await noteService.query(1);
