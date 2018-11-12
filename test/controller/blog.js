@@ -42,6 +42,7 @@ describe('test control', next => {
                 .end((err, res) => {
                     res.status.should.equal(200);
                     res.body.id.should.equal(id);
+                    Buffer.from(res.body.content.data).toString('utf8').should.equal(content);
                     done();
                 })
         });
@@ -49,10 +50,13 @@ describe('test control', next => {
             request(app).put(`/app/v1/blogs/${id}`)
                 .send({ title: modifyTitle, content: modifyContent })
                 .end((err, res) => {
-                    res.status.should.equal(200);
-                    res.body.title.should.equal(modifyTitle);
-                    res.body.content.should.equal(modifyContent);
-                    done()
+                    request(app).get(`/app/v1/blogs/${id}`)
+                        .end((err, res) => {
+                            res.status.should.equal(200);
+                            res.body.id.should.equal(id);
+                            Buffer.from(res.body.content.data).toString('utf8').should.equal(modifyContent)
+                            done();
+                        })
                 });
         });
         it('add tag', done => {
@@ -85,4 +89,6 @@ describe('test control', next => {
                 })
         });
     });
+
+    after(() => models.sequelize.dropAllSchemas())
 });
