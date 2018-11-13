@@ -6,7 +6,8 @@
   "scripts": {
     "start": "export NODE_ENV=development && node src/index.js",
     "build": "",
-    "test": "export NODE_ENV=test && mocha test/**/*.js"
+    "test": "export NODE_ENV=test && mocha test/**/*.js --exit",
+    "test_win": "set NODE_ENV=test&& mocha test/**/*.js --exit"
   },
   "keywords": [
     "blog",

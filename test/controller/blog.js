@@ -59,7 +59,7 @@ describe('test control', next => {
                         })
                 });
         });
-        it('add tag', done => {
+        it('add a tag', done => {
             request(app).post(`/app/v1/blogs/${id}/tags`)
                 .send({ name: tagName })
                 .end(async (err, res) => {
